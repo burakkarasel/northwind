@@ -5,6 +5,9 @@ import com.demo.northwind.core.utilities.results.Result;
 import com.demo.northwind.entities.concretes.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.annotation.RequestScope;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/products")
@@ -18,7 +21,7 @@ public class ProductsController {
         this.setProductService(_productService);
     }
 
-    @GetMapping("/getall")
+    @GetMapping("/getAll")
     public Result getAll(){
         return this.productService.getAll();
     }
@@ -28,11 +31,55 @@ public class ProductsController {
         return this.productService.add(product);
     }
 
-    @GetMapping("/get")
+    @GetMapping("/getOne")
     public Result getOne(@RequestParam int id){
         return this.productService.getOne(id);
     }
 
+    @GetMapping("/getByProductName")
+    public Result getByProductName(@RequestParam String productName){
+        return this.productService.getByProductName(productName);
+    }
+
+    @GetMapping("getByProductNameAndCategoryId")
+    public Result getByProductNameAndCategoryId(@RequestParam String productName, @RequestParam int categoryId){
+        return this.productService.getByProductNameAndCategoryId(productName, categoryId);
+    }
+
+    @GetMapping("/getByProductNameOrCategoryId")
+    public Result getByProductNameOrCategoryId(@RequestParam String productName, @RequestParam int categoryId){
+        return this.productService.getByProductNameOrCategoryId(productName, categoryId);
+    }
+
+    @GetMapping("/getByCategoryIdIn")
+    public Result getByCategoryIdIn(@RequestParam List<Integer> categories){
+        return this.productService.getByCategoryIdIn(categories);
+    }
+
+    @GetMapping("/getByProductNameContains")
+    public Result getByProductNameContains(@RequestParam String productName){
+        return this.productService.getByProductNameContains(productName);
+    }
+
+    @GetMapping("/getByProductNameStartsWith")
+    public Result getByProductNameStartsWith(@RequestParam String productName) {
+        return this.productService.getByProductNameStartsWith(productName);
+    }
+
+    @GetMapping("/fetchByNameAndCategory")
+    public Result fetchByNameAndCategory(@RequestParam String productName, @RequestParam int categoryId){
+        return this.productService.fetchByNameAndCategory(productName, categoryId);
+    }
+
+    @GetMapping("/getAllWithPages")
+    public Result getAllWithPages(@RequestParam int pageNo, @RequestParam int pageSize){
+        return this.productService.getAllWithPages(pageNo, pageSize);
+    }
+
+    @GetMapping("/getAllSorted")
+    public Result getAllSorted(){
+        return this.productService.getAllSorted();
+    }
     public ProductService getProductService() {
         return productService;
     }

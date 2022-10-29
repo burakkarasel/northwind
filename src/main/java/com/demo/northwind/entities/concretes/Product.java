@@ -9,8 +9,6 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
     private int id;
-    @Column(name = "category_id")
-    private int categoryId;
     @Column(name = "product_name")
     private String productName;
     @Column(name = "unit_price")
@@ -20,15 +18,19 @@ public class Product {
     @Column(name = "quantity_per_unit")
     private String quantityPerUnit;
 
+    @ManyToOne
+    @JoinColumn(name="category_id")
+    private Category category;
+
     public Product(){}
 
-    public Product(int _id, int _categoryId, String _productName, double _unitPrice, short _unitsInStock, String _quantityPerUnit){
-        this.id = _id;
-        this.categoryId = _categoryId;
-        this.productName = _productName;
-        this.unitPrice = _unitPrice;
-        this.unitsInStock = _unitsInStock;
-        this.quantityPerUnit = _quantityPerUnit;
+    public Product(int _id, String _productName, double _unitPrice, short _unitsInStock, String _quantityPerUnit, Category _category){
+        this.setId(_id);
+        this.setCategory(_category);
+        this.setProductName(_productName);
+        this.setUnitPrice(_unitPrice);
+        this.setUnitsInStock(_unitsInStock);
+        this.setQuantityPerUnit(_quantityPerUnit);
     }
 
     public int getId() {
@@ -37,14 +39,6 @@ public class Product {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
     }
 
     public String getProductName() {
@@ -77,5 +71,13 @@ public class Product {
 
     public void setQuantityPerUnit(String quantityPerUnit) {
         this.quantityPerUnit = quantityPerUnit;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
