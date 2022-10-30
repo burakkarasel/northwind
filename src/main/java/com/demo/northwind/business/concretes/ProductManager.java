@@ -87,6 +87,11 @@ public class ProductManager implements ProductService {
         return new SuccessDataResult<>(this.productDao.fetchByNameAndCategory(productName, categoryId), "Got related products");
     }
 
+    @Override
+    public Result getProductWithCategoryDetails(){
+        return new SuccessDataResult<>(this.productDao.getProductWithCategoryDetails(), "Got related products");
+    }
+
     public ProductDao getProductDao() {
         return productDao;
     }

@@ -5,7 +5,6 @@ import com.demo.northwind.core.utilities.results.Result;
 import com.demo.northwind.entities.concretes.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.annotation.RequestScope;
 
 import java.util.List;
 
@@ -80,6 +79,9 @@ public class ProductsController {
     public Result getAllSorted(){
         return this.productService.getAllSorted();
     }
+
+    @GetMapping("/getProductWithCategoryDetails")
+    public Result getProductWithCategoryDetails(){return this.productService.getProductWithCategoryDetails();}
     public ProductService getProductService() {
         return productService;
     }

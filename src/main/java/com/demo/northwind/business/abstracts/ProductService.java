@@ -27,4 +27,6 @@ public interface ProductService {
     Result getByProductNameStartsWith(String productName);
 
     Result fetchByNameAndCategory(String productName, int categoryId);
+
+    Result getProductWithCategoryDetails();
 }
